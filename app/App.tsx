@@ -1,20 +1,28 @@
+import "react-native-gesture-handler"
+//pacakges & Libs
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+//Navigation
+import { NavigationContainer } from "@react-navigation/native"
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack'
+const Stack = createStackNavigator()
+//Screens
+import Login from "./screens/Login/Login";
+import AllNotes from "./screens/AllNotes/AllNotes";
+import Edit from "./screens/Edit/Edit";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="AllNotes"
+          component={AllNotes}
+          options={{ title: 'All Notes',cardStyleInterpolator:CardStyleInterpolators.forHorizontalIOS}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
